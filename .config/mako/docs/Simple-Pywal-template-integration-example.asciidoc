@@ -1,0 +1,33 @@
+## /home/USER/.config/mako/config
+```
+include=/home/USER/.config/mako/colors
+```
+
+## /home/USER/.config/mako/colors 
+### link: colors -> /home/USER/.cache/wal/mako
+```
+# Colors
+background-color=#rrggbb
+text-color=#rrggbb
+border-color=#rrggbb
+progress-color=over #rrggbb
+
+[urgency=high]
+border-color=#rrggbb
+```
+
+***
+## /home/USER/.config/wal/templates/mako
+```
+# Colors
+background-color={background}
+text-color={cursor}
+border-color={cursor}
+progress-color=over {color1}
+
+[urgency=high]
+border-color={color2}
+```
+
+***
+## makoctl reload

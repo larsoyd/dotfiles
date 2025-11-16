@@ -1,0 +1,519 @@
+/* ============================================================
+   WAYBAR STYLE - Nord Theme
+   ============================================================ */
+
+/* ============================================================
+   GLOBAL STYLES & COLORS
+   ============================================================ */
+
+* {
+    font-family: "Noto Sans", "Symbols Nerd Font Mono";
+    font-size: 13px;
+    font-weight: 500;
+    min-height: 0;
+}
+
+/* Nord Color Palette */
+@define-color nord0 #2e3440;   /* Polar Night - darkest background */
+@define-color nord1 #3b4252;   /* Polar Night - elevated surfaces */
+@define-color nord2 #434c5e;   /* Polar Night - active elements */
+@define-color nord3 #4c566a;   /* Polar Night - subtle elements */
+@define-color nord4 #d8dee9;   /* Snow Storm - primary text */
+@define-color nord5 #e5e9f0;   /* Snow Storm - highlighted text */
+@define-color nord6 #eceff4;   /* Snow Storm - brightest text */
+@define-color nord7 #8fbcbb;   /* Frost - muted cyan */
+@define-color nord8 #88c0d0;   /* Frost - bright cyan (primary accent) */
+@define-color nord9 #81a1c1;   /* Frost - blue-tinted */
+@define-color nord10 #5e81ac;  /* Frost - deep blue */
+@define-color nord11 #bf616a;  /* Aurora - red (errors/urgent) */
+@define-color nord12 #d08770;  /* Aurora - orange (warnings) */
+@define-color nord13 #ebcb8b;  /* Aurora - yellow (attention) */
+@define-color nord14 #a3be8c;  /* Aurora - green (success) */
+@define-color nord15 #b48ead;  /* Aurora - purple (special) */
+
+/* ============================================================
+   MAIN WAYBAR CONTAINER
+   ============================================================ */
+
+window#waybar {
+    background-color: @nord0;
+    color: @nord4;
+    border-radius: 12px;
+    padding: 0px 8px;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   MODULE DEFAULTS
+   ============================================================ */
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: transparent;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #custom-power {
+    margin-right: 0;
+}
+
+/* Default module styling */
+#workspaces,
+#clock,
+#tray,
+#wireplumber,
+#network,
+#custom-power {
+    padding: 0px 12px;
+    margin: 4px 0px;
+    background-color: transparent;
+    color: @nord4;
+    border-radius: 8px;
+}
+
+/* ============================================================
+   LEFT MODULES - WORKSPACES
+   ============================================================ */
+
+#workspaces {
+    padding: 0px 4px;
+}
+
+#workspaces button {
+    padding: 0px 10px;
+    margin: 2px 3px;
+    background-color: @nord1;
+    color: @nord4;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+    min-width: 30px;
+}
+
+#workspaces button:hover {
+    background-color: @nord2;
+    color: @nord6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#workspaces button.active {
+    background: linear-gradient(135deg, @nord8, @nord10);
+    color: @nord0;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(136, 192, 208, 0.5);
+}
+
+#workspaces button.urgent {
+    background-color: @nord11;
+    color: @nord6;
+    animation: blink 1s ease-in-out infinite alternate;
+}
+
+#workspaces button.empty {
+    background-color: transparent;
+    color: @nord3;
+}
+
+#workspaces button.persistent {
+    background-color: @nord1;
+    color: @nord9;
+}
+
+@keyframes blink {
+    to {
+        background-color: @nord12;
+        color: @nord0;
+    }
+}
+
+/* ============================================================
+   CENTER MODULES - CLOCK
+   ============================================================ */
+
+#clock {
+    background-color: @nord1;
+    color: @nord6;
+    font-weight: 600;
+    padding: 4px 16px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 120px;
+}
+
+#clock:hover {
+    background-color: @nord2;
+    box-shadow: 0 2px 6px rgba(136, 192, 208, 0.3);
+}
+
+/* ============================================================
+   RIGHT MODULES
+   ============================================================ */
+
+/* System Tray */
+#tray {
+    background-color: @nord1;
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @nord11;
+}
+
+/* Network */
+#network {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#network:hover {
+    background-color: @nord2;
+    box-shadow: 0 2px 6px rgba(136, 192, 208, 0.3);
+}
+
+#network.disconnected {
+    background-color: @nord1;
+    color: @nord11;
+}
+
+#network.ethernet {
+    color: @nord14;
+}
+
+#network.wifi {
+    color: @nord8;
+}
+
+/* WirePlumber Audio */
+#wireplumber {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 14px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+#wireplumber:hover {
+    background-color: @nord2;
+    box-shadow: 0 2px 6px rgba(136, 192, 208, 0.3);
+}
+
+#wireplumber.muted {
+    background-color: @nord1;
+    color: @nord11;
+}
+
+#wireplumber.low {
+    color: @nord7;
+}
+
+#wireplumber.medium {
+    color: @nord8;
+}
+
+#wireplumber.high {
+    color: @nord10;
+}
+
+/* Volume change animation - subtle pulse effect */
+@keyframes volume-pulse {
+    0% {
+        box-shadow: 0 2px 6px rgba(136, 192, 208, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 10px rgba(136, 192, 208, 0.6);
+    }
+    100% {
+        box-shadow: 0 2px 6px rgba(136, 192, 208, 0.3);
+    }
+}
+
+#wireplumber:active {
+    animation: volume-pulse 0.3s ease-in-out;
+    animation-timing-function: steps(6);
+}
+
+/* Separator before power button */
+#network {
+    border-right: 1px solid rgba(76, 86, 106, 0.5);
+    padding-right: 16px;
+    margin-right: 4px;
+}
+
+/* Power Button */
+#custom-power {
+    background-color: @nord1;
+    color: @nord11;
+    font-size: 18px;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+#custom-power:hover {
+    background-color: @nord11;
+    color: @nord6;
+    box-shadow: 0 2px 6px rgba(191, 97, 106, 0.5);
+}
+
+/* ============================================================
+   TOOLTIP STYLING
+   ============================================================ */
+
+tooltip {
+    background: @nord1;
+    border: 2px solid @nord8;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+tooltip label {
+    color: @nord4;
+}
+
+/* ============================================================
+   ADDITIONAL MODULE STYLES (COMMENTED OUT)
+   These styles are ready for use when you enable the modules
+   ============================================================ */
+
+/* Window Title
+#window {
+    background-color: @nord1;
+    color: @nord4;
+    padding: 4px 16px;
+    border-radius: 8px;
+}
+*/
+
+/* Submap
+#submap {
+    background-color: @nord12;
+    color: @nord0;
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+}
+*/
+
+/* Idle Inhibitor
+#idle_inhibitor {
+    background-color: @nord1;
+    color: @nord4;
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+#idle_inhibitor.activated {
+    background-color: @nord14;
+    color: @nord0;
+}
+*/
+
+/* Audio
+#pulseaudio {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#pulseaudio:hover {
+    background-color: @nord2;
+}
+
+#pulseaudio.muted {
+    background-color: @nord1;
+    color: @nord11;
+}
+
+#pulseaudio#microphone {
+    background-color: @nord1;
+    color: @nord9;
+}
+
+#pulseaudio#microphone.source-muted {
+    color: @nord11;
+}
+*/
+
+/* Backlight
+#backlight {
+    background-color: @nord1;
+    color: @nord13;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#backlight:hover {
+    background-color: @nord2;
+}
+*/
+
+/* Battery
+#battery {
+    background-color: @nord1;
+    color: @nord14;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @nord14;
+}
+
+#battery.warning:not(.charging) {
+    background-color: @nord12;
+    color: @nord0;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @nord11;
+    color: @nord6;
+    animation: blink 0.5s linear infinite alternate;
+}
+*/
+
+/* CPU
+#cpu {
+    background-color: @nord1;
+    color: @nord9;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#cpu:hover {
+    background-color: @nord2;
+}
+*/
+
+/* Memory
+#memory {
+    background-color: @nord1;
+    color: @nord15;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#memory:hover {
+    background-color: @nord2;
+}
+*/
+
+/* Disk
+#disk {
+    background-color: @nord1;
+    color: @nord7;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#disk:hover {
+    background-color: @nord2;
+}
+*/
+
+/* Temperature
+#temperature {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#temperature.critical {
+    background-color: @nord11;
+    color: @nord6;
+}
+*/
+
+/* Bluetooth
+#bluetooth {
+    background-color: @nord1;
+    color: @nord9;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#bluetooth:hover {
+    background-color: @nord2;
+}
+
+#bluetooth.disabled {
+    color: @nord3;
+}
+
+#bluetooth.connected {
+    color: @nord8;
+}
+*/
+
+/* MPD / Media Player
+#mpd,
+#mpris {
+    background-color: @nord1;
+    color: @nord15;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#mpd:hover,
+#mpris:hover {
+    background-color: @nord2;
+}
+
+#mpd.disconnected,
+#mpd.stopped {
+    color: @nord3;
+}
+
+#mpd.paused {
+    color: @nord12;
+}
+*/
+
+/* Custom Modules
+#custom-notification {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+#custom-updates {
+    background-color: @nord1;
+    color: @nord12;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#custom-updates:hover {
+    background-color: @nord2;
+}
+
+#custom-weather {
+    background-color: @nord1;
+    color: @nord8;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+
+#custom-media {
+    background-color: @nord1;
+    color: @nord15;
+    padding: 4px 14px;
+    border-radius: 8px;
+}
+*/

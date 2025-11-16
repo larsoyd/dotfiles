@@ -1,0 +1,54 @@
+If you just installed mako and are changing config file rapidly and manually
+running ~makoctl reload~ and some test ~notify-send~ command here is an example of
+how to automate that process.
+
+Create =~/.config/mako/reload.sh= script, that will also send you test
+notification:
+
+#+begin_src bash
+#!/usr/bin/env sh
+
+makoctl reload
+# to test a 'high' urgency notification add '-u critical '
+notify-send -a "Test notif app" -i firefox -t 5000 "Here is some summary" "needed to <s>create</s> that script cuz /usr/bin/makoctl reload wasn't working and was preventing the notification to appear with no logs"
+#+end_src
+
+Create watcher service and don't forget to alter the path to the script in
+ExecStart param:
+
+#+begin_src
+# ~/.config/systemd/user/mako-watcher.service
+
+[Unit]
+Description=mako notifications tester
+
+[Service]
+Type=oneshot
+ExecStart=/path/to/.config/mako/reload.sh
+
+[Install]
+WantedBy=graphical-session.target
+#+end_src
+
+Create a .path service, that you will also need to start. Watcher won't work
+without it. Also edit /PathModified/ param to match your full path to mako folder.
+
+#+begin_src
+# ~/.config/systemd/user/mako-watcher.path
+
+[Path]
+PathModified=%h/.config/mako/config
+
+[Install]
+WantedBy=graphical-session.target
+#+end_src
+
+Enable those 2 user services:
+
+#+begin_src
+systemctl --user enable --now mako-watcher.service
+systemctl --user enable --now mako-watcher.path
+#+end_src
+
+Now whenever you edit any file in =~/.config/mako= mako will reload its config and
+send you a test notification.

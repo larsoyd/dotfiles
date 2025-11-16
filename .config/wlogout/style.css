@@ -1,0 +1,101 @@
+/* ============================================================
+   WLOGOUT STYLE - Nord Theme
+   Matches system-wide Hyprland + Waybar + Mako aesthetic
+   ============================================================ */
+
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	/* Nord color scheme: nord0 (primary background) with transparency */
+	background-color: rgba(46, 52, 64, 0.95);
+	border-radius: 12px;
+}
+
+button {
+	/* Nord color scheme: nord1 (elevated surfaces) matching Waybar modules */
+	background-color: #3b4252;
+	color: #d8dee9;
+
+	/* Rounded corners matching system aesthetic (Hyprland: 10px, Waybar: 12px, Mako: 15px) */
+	border-radius: 10px;
+
+	/* Border using nord3 (subtle gray) */
+	border-color: #4c566a;
+	border-style: solid;
+	border-width: 2px;
+
+	/* Icon styling */
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+
+	/* Smooth transitions matching Waybar */
+	transition: all 0.3s ease-in-out;
+
+	/* Subtle shadow for depth */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button:focus, button:active, button:hover {
+	/* Hover state: nord2 (active elements) with nord8 accent border */
+	background-color: #434c5e;
+	border-color: #88c0d0;
+	color: #eceff4;
+	outline-style: none;
+
+	/* Enhanced shadow on hover matching Waybar style */
+	box-shadow: 0 2px 6px rgba(136, 192, 208, 0.4);
+}
+
+/* ============================================================
+   BUTTON ICONS
+   ============================================================ */
+
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+}
+
+/* ============================================================
+   SEMANTIC COLOR CODING - Dangerous Actions
+   Shutdown and reboot use nord11 (red) accent for warnings
+   Matches Waybar power button and Mako high urgency
+   ============================================================ */
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-color: #bf616a;
+}
+
+#shutdown:hover {
+    background-color: #bf616a;
+    color: #eceff4;
+    border-color: #bf616a;
+    box-shadow: 0 2px 6px rgba(191, 97, 106, 0.5);
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    border-color: #bf616a;
+}
+
+#reboot:hover {
+    background-color: #bf616a;
+    color: #eceff4;
+    border-color: #bf616a;
+    box-shadow: 0 2px 6px rgba(191, 97, 106, 0.5);
+}

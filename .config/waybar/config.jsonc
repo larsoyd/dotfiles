@@ -1,0 +1,392 @@
+{
+    // ============================================================
+    // WAYBAR CONFIGURATION - Nord Theme
+    // ============================================================
+
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 8,
+    "margin-top": 8,
+    "margin-left": 12,
+    "margin-right": 12,
+
+    // ============================================================
+    // MODULE LAYOUT
+    // ============================================================
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+
+    "modules-center": [
+        "clock"
+    ],
+
+    "modules-right": [
+        "tray",
+        "wireplumber",
+        "network",
+        "custom/power"
+    ],
+
+    // ============================================================
+    // LEFT MODULES
+    // ============================================================
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "󰲠",
+            "2": "󰲢",
+            "3": "󰲤",
+            "4": "󰲦",
+            "5": "󰲨",
+            "6": "󰲪",
+            "7": "󰲬",
+            "8": "󰲮",
+            "9": "󰲰",
+            "10": "󰿬",
+            "active": "",
+            "default": "",
+            "empty": "󰧵",
+            "persistent": "",
+            "urgent": ""
+        },
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": false,
+        "active-only": false,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        },
+        "show-special": false
+    },
+
+    // ============================================================
+    // CENTER MODULES
+    // ============================================================
+
+    "clock": {
+        "format": "{:%H:%M\n%Y-%m-%d}",
+        "format-alt": "{:%A, %B %d, %Y\n%I:%M %p}",
+        "locale": "nb_NO.UTF-8",
+        "timezones": [
+            "Europe/Oslo",
+            "UTC"
+        ],
+        "tooltip-format": "<tt><small>{calendar}</small></tt>\n{tz_list}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#88c0d0'><b>{}</b></span>",
+                "days": "<span color='#d8dee9'><b>{}</b></span>",
+                "weeks": "<span color='#81a1c1'><b>W{}</b></span>",
+                "weekdays": "<span color='#ebcb8b'><b>{}</b></span>",
+                "today": "<span color='#a3be8c'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click": "tz_up",
+            "on-click-middle": "tz_down",
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    // ============================================================
+    // RIGHT MODULES
+    // ============================================================
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "show-passive-items": true
+    },
+
+    "network": {
+        "format-wifi": "󰤨  {essid}",
+        "format-ethernet": "󰈀  {ifname}",
+        "format-disconnected": "󰤭  Disconnected",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "󰈀  {ifname}\n{ipaddr}/{cidr}",
+        "tooltip-format-wifi": "󰤨  {essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "nm-connection-editor",
+        "interval": 5
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+
+    // ============================================================
+    // AUDIO MODULE
+    // ============================================================
+
+    "wireplumber": {
+        "format": "{icon}  {volume}%",
+        "format-muted": "󰝟  Muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "states": {
+            "low": 33,
+            "medium": 66,
+            "high": 100
+        },
+        "scroll-step": 5,
+        "on-click": "uwsm app -- pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "tooltip": true,
+        "tooltip-format": "{node_name}\nVolume: {volume}%",
+        "max-volume": 150
+    }
+
+    // ============================================================
+    // ADDITIONAL MODULES (COMMENTED OUT FOR FUTURE USE)
+    // ============================================================
+
+    // "hyprland/window": {
+    //     "format": "{}",
+    //     "max-length": 50,
+    //     "icon": true,
+    //     "icon-size": 18,
+    //     "separate-outputs": true,
+    //     "rewrite": {
+    //         "(.*) — Mozilla Firefox": "🌎 $1",
+    //         "(.*) - Visual Studio Code": " $1"
+    //     }
+    // },
+
+    // "hyprland/submap": {
+    //     "format": "✌  {}",
+    //     "max-length": 8,
+    //     "tooltip": false
+    // },
+
+    // "idle_inhibitor": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "activated": "󰈈",
+    //         "deactivated": "󰈉"
+    //     },
+    //     "tooltip": true,
+    //     "tooltip-format-activated": "Idle inhibitor active",
+    //     "tooltip-format-deactivated": "Idle inhibitor inactive"
+    // },
+
+    // "pulseaudio": {
+    //     "format": "{icon}  {volume}%",
+    //     "format-muted": "󰝟  Muted",
+    //     "format-icons": {
+    //         "headphone": "󰋋",
+    //         "hands-free": "󱡏",
+    //         "headset": "󰋎",
+    //         "phone": "󰏲",
+    //         "portable": "󰏲",
+    //         "car": "󰄋",
+    //         "default": ["󰕿", "󰖀", "󰕾"]
+    //     },
+    //     "scroll-step": 5,
+    //     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    //     "on-click-right": "pavucontrol",
+    //     "tooltip": true,
+    //     "tooltip-format": "{desc}\nVolume: {volume}%"
+    // },
+
+    // "pulseaudio#microphone": {
+    //     "format": "{format_source}",
+    //     "format-source": "󰍬  {volume}%",
+    //     "format-source-muted": "󰍭  Muted",
+    //     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    //     "on-click-right": "pavucontrol",
+    //     "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+",
+    //     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-",
+    //     "tooltip": true,
+    //     "tooltip-format": "{desc}\nVolume: {volume}%"
+    // },
+
+    // "backlight": {
+    //     "device": "intel_backlight",
+    //     "format": "{icon}  {percent}%",
+    //     "format-icons": ["󰃞", "󰃟", "󰃠"],
+    //     "on-scroll-up": "brightnessctl set +5%",
+    //     "on-scroll-down": "brightnessctl set 5%-",
+    //     "tooltip": false
+    // },
+
+    // "battery": {
+    //     "states": {
+    //         "good": 95,
+    //         "warning": 30,
+    //         "critical": 15
+    //     },
+    //     "format": "{icon}  {capacity}%",
+    //     "format-charging": "󰂄  {capacity}%",
+    //     "format-plugged": "󰂄  {capacity}%",
+    //     "format-alt": "{icon}  {time}",
+    //     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    //     "tooltip-format": "{timeTo}\n{capacity}%"
+    // },
+
+    // "cpu": {
+    //     "format": "󰻠  {usage}%",
+    //     "tooltip": true,
+    //     "interval": 2,
+    //     "on-click": "kitty htop"
+    // },
+
+    // "memory": {
+    //     "format": "󰍛  {percentage}%",
+    //     "tooltip": true,
+    //     "tooltip-format": "RAM: {used:0.1f}G / {total:0.1f}G\nSwap: {swapUsed:0.1f}G / {swapTotal:0.1f}G",
+    //     "interval": 2,
+    //     "on-click": "kitty htop"
+    // },
+
+    // "disk": {
+    //     "interval": 30,
+    //     "format": "󰋊  {percentage_used}%",
+    //     "path": "/",
+    //     "tooltip": true,
+    //     "tooltip-format": "Used: {used} / {total}\nFree: {free} ({percentage_free}%)"
+    // },
+
+    // "temperature": {
+    //     "thermal-zone": 2,
+    //     "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    //     "critical-threshold": 80,
+    //     "format": "{icon}  {temperatureC}°C",
+    //     "format-icons": ["", "", ""],
+    //     "tooltip": false
+    // },
+
+    // "bluetooth": {
+    //     "format": "󰂯",
+    //     "format-disabled": "󰂲",
+    //     "format-connected": "󰂱  {device_alias}",
+    //     "format-connected-battery": "󰂱  {device_alias} ({device_battery_percentage}%)",
+    //     "tooltip-format": "{controller_alias}\t{controller_address}",
+    //     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    //     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    //     "on-click": "blueman-manager"
+    // },
+
+    // "mpd": {
+    //     "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    //     "format-disconnected": "󰝚  Disconnected",
+    //     "format-stopped": "󰝚  Stopped",
+    //     "interval": 2,
+    //     "consume-icons": {
+    //         "on": " "
+    //     },
+    //     "random-icons": {
+    //         "off": "<span color=\"#f53c3c\"></span> ",
+    //         "on": " "
+    //     },
+    //     "repeat-icons": {
+    //         "on": " "
+    //     },
+    //     "single-icons": {
+    //         "on": "󰆽 "
+    //     },
+    //     "state-icons": {
+    //         "paused": "",
+    //         "playing": ""
+    //     },
+    //     "tooltip-format": "MPD (connected)",
+    //     "tooltip-format-disconnected": "MPD (disconnected)",
+    //     "on-click": "mpc toggle",
+    //     "on-click-right": "kitty ncmpcpp"
+    // },
+
+    // "mpris": {
+    //     "format": "{player_icon} {dynamic}",
+    //     "format-paused": "{status_icon} <i>{dynamic}</i>",
+    //     "player-icons": {
+    //         "default": "▶",
+    //         "mpv": "🎵",
+    //         "spotify": ""
+    //     },
+    //     "status-icons": {
+    //         "paused": "⏸"
+    //     },
+    //     "dynamic-order": ["artist", "title"],
+    //     "dynamic-importance-order": ["title", "artist"],
+    //     "tooltip": true,
+    //     "tooltip-format": "{player} - {title}\n{artist}\n{album}",
+    //     "on-click": "playerctl play-pause",
+    //     "on-click-right": "playerctl next",
+    //     "on-scroll-up": "playerctl volume 0.05+",
+    //     "on-scroll-down": "playerctl volume 0.05-"
+    // },
+
+    // "custom/notification": {
+    //     "tooltip": false,
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "notification": "󰂚<span foreground='red'><sup></sup></span>",
+    //         "none": "󰂚",
+    //         "dnd-notification": "󰂛<span foreground='red'><sup></sup></span>",
+    //         "dnd-none": "󰂛",
+    //         "inhibited-notification": "󰂚<span foreground='red'><sup></sup></span>",
+    //         "inhibited-none": "󰂚",
+    //         "dnd-inhibited-notification": "󰂛<span foreground='red'><sup></sup></span>",
+    //         "dnd-inhibited-none": "󰂛"
+    //     },
+    //     "return-type": "json",
+    //     "exec-if": "which swaync-client",
+    //     "exec": "swaync-client -swb",
+    //     "on-click": "swaync-client -t -sw",
+    //     "on-click-right": "swaync-client -d -sw",
+    //     "escape": true
+    // },
+
+    // "custom/updates": {
+    //     "format": "󰚰  {}",
+    //     "interval": 3600,
+    //     "exec": "checkupdates | wc -l",
+    //     "exec-if": "exit 0",
+    //     "on-click": "kitty yay -Syu",
+    //     "tooltip": true,
+    //     "tooltip-format": "Click to update system"
+    // },
+
+    // "custom/weather": {
+    //     "format": "{}",
+    //     "tooltip": true,
+    //     "interval": 1800,
+    //     "exec": "~/.config/waybar/scripts/weather.sh",
+    //     "return-type": "json"
+    // },
+
+    // "custom/media": {
+    //     "format": "{icon} {}",
+    //     "return-type": "json",
+    //     "max-length": 40,
+    //     "format-icons": {
+    //         "spotify": "",
+    //         "default": "🎜"
+    //     },
+    //     "escape": true,
+    //     "exec": "playerctl metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}} : {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+    //     "on-click": "playerctl play-pause"
+    // }
+}

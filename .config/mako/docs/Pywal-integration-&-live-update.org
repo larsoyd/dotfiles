@@ -1,0 +1,60 @@
+This page is for those who want to dynamically change mako's colors when their
+wal colors change.
+
+Create a =$XDG_CONFIG_HOME/mako/update-theme.sh= script:
+
+#+begin_src bash
+#!/bin/sh
+
+. "${HOME}/.cache/wal/colors.sh"
+
+conffile="$XDG_CONFIG_HOME/mako/config"
+
+# Associative array, color name -> color code.
+declare -A colors
+colors=(
+    ["background-color"]="${background}89"
+    ["text-color"]="$foreground"
+    ["border-color"]="$color13"
+)
+
+for color_name in "${!colors[@]}"; do
+  # replace first occurance of each color in config file
+  sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" $conffile
+done
+
+makoctl reload
+# additionally here you can add some notify-send test notification
+#+end_src
+
+And call this script from whichever place is regenerating your /wal/ color
+palette.
+
+It will change 3 lines and only 1st occurences of them all:
+- background-color
+- text-color
+- border-color
+
+In case any color setting was missing in config file the script will *not* add it
+to your config file. Feel free to modify the script and update this page.
+
+*Note:* disadvantage of this script is that if you have mako config file in git,
+ you will see it modified every time this script runs. As a workaround you can
+ create =config.default= file, have it in git instead of actuall =config= file and
+ modify the script to first output default config file to actual one and only
+ then run sed on it.
+
+-----
+
+As addition for those who have customized their =format= option. It is difficult
+to make a 'working for everyone' regexp so i will just put here my sed regexp to
+maybe ease you the job of writing one.
+
+I have following format option:
+
+: format=<span color="#A0A0A5" size="13pt" line_height="1.4"><b>%a</b></span>\n<span color="#9a9a9c"><i>%s</i></span>\n<tt>%b</tt>
+
+In order to change title and summary colors i have following command in script
+above: 
+
+: sed -i "s/\(^format=.\{1,10\}color=\"\).\{4,9\}\(\".\{30,60\}color=\"\).\{4,9\}\(\".*\)/\1${color3}\2${color8}\3/" $conffile
