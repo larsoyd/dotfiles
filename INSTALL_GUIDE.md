@@ -647,7 +647,7 @@ nano /etc/kernel/cmdline
 # zswap.compressor=lz4 switches compressor to lz4 from zstd, lz4 is considered faster
 #
 # /etc/kernel/cmdline
-rw rootflags=noatime nowatchdog loglevel=3 zswap.compressor=lz4
+rw rootflags=noatime nowatchdog loglevel=3 zswap.compressor=lz4 zswap.enabled=1
 ```
 
 #### 6.14.1 Make the ESP directory
