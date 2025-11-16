@@ -1,12 +1,5 @@
 # Complete Arch Linux Tutorial (Hyprland w/ Automounting Partitions)
 
-> **Comment pattern reminder:** Every command in this guide uses a `# What/Why` line immediately above it.
-
-```bash
-# Example: explain the intention first, then run the command.
-pacman -Syu
-```
-
 This is a Arch installation guide for the Hyprland window manager on Arch Linux.
 
 **GPT Auto-Mount + Hyprland + NVIDIA**
